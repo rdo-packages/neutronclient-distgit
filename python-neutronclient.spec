@@ -1,6 +1,6 @@
 Name:       python-neutronclient
-Version:    2.3.4
-Release:    2%{?dist}
+Version:    2.3.6
+Release:    1%{?dist}
 Summary:    Python API and CLI for OpenStack Neutron
 
 Group:      Development/Languages
@@ -8,9 +8,6 @@ License:    ASL 2.0
 URL:        http://launchpad.net/python-neutronclient/
 Source0:    https://pypi.python.org/packages/source/p/%{name}/%{name}-%{version}.tar.gz
 
-#
-# patches_base=2.3.4
-#
 Patch0001: 0001-Remove-runtime-dependency-on-python-pbr.patch
 
 BuildArch:  noarch
@@ -22,7 +19,9 @@ BuildRequires: python-d2to1
 
 Requires: pyparsing
 Requires: python-cliff >= 1.0
+Requires: python-keystoneclient >= 0.9.0
 Requires: python-prettytable >= 0.6
+Requires: python-requests
 Requires: python-setuptools
 Requires: python-simplejson
 
@@ -63,6 +62,10 @@ rm -rf %{buildroot}%{python_sitelib}/neutronclient/tests
 %{_sysconfdir}/bash_completion.d
 
 %changelog
+* Mon Aug 04 2014 Jakub Ruzicka <jruzicka@redhat.com> 2.3.6-1
+- Update to upstream 2.3.6
+- New requirements: python-requests, python-keystoneclient
+
 * Sat Jun 07 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.3.4-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
 

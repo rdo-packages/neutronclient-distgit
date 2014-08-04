@@ -1,4 +1,4 @@
-From 5f501ec8705bd8dbe48ee1c528f3953cd6fac850 Mon Sep 17 00:00:00 2001
+From d161171230e3206b240cd34b406e6660c3c8c6d2 Mon Sep 17 00:00:00 2001
 From: Jakub Ruzicka <jruzicka@redhat.com>
 Date: Tue, 23 Jul 2013 18:35:38 +0200
 Subject: [PATCH] Remove runtime dependency on python-pbr
@@ -22,11 +22,11 @@ index 9315671..f0b6efc 100644
 -__version__ = pbr.version.VersionInfo('python-neutronclient').version_string()
 +__version__ = "REDHATNEUTRONCLIENTVERSION"
 diff --git a/setup.py b/setup.py
-index 70c2b3f..afab729 100644
+index 7363757..09230a0 100644
 --- a/setup.py
 +++ b/setup.py
-@@ -18,5 +18,4 @@
- import setuptools
+@@ -26,5 +26,4 @@ except ImportError:
+     pass
  
  setuptools.setup(
 -    setup_requires=['pbr'],
