@@ -1,6 +1,6 @@
 Name:       python-neutronclient
 Version:    2.3.6
-Release:    1%{?dist}
+Release:    2%{?dist}
 Summary:    Python API and CLI for OpenStack Neutron
 
 Group:      Development/Languages
@@ -9,6 +9,7 @@ URL:        http://launchpad.net/python-neutronclient/
 Source0:    https://pypi.python.org/packages/source/p/%{name}/%{name}-%{version}.tar.gz
 
 Patch0001: 0001-Remove-runtime-dependency-on-python-pbr.patch
+Patch0002: 0002-Fix-listing-security-group-rules.patch
 
 BuildArch:  noarch
 
@@ -33,6 +34,7 @@ Neutron's API.
 %setup -q -n %{name}-%{version}
 
 %patch0001 -p1
+%patch0002 -p1
 
 # We provide version like this in order to remove runtime dep on pbr.
 sed -i s/REDHATNEUTRONCLIENTVERSION/%{version}/ neutronclient/version.py
@@ -62,6 +64,9 @@ rm -rf %{buildroot}%{python_sitelib}/neutronclient/tests
 %{_sysconfdir}/bash_completion.d
 
 %changelog
+* Thu Aug 21 2014 Jakub Ruzicka <jruzicka@redhat.com> 2.3.6-2
+- Fix listing security group rules
+
 * Mon Aug 04 2014 Jakub Ruzicka <jruzicka@redhat.com> 2.3.6-1
 - Update to upstream 2.3.6
 - New requirements: python-requests, python-keystoneclient
