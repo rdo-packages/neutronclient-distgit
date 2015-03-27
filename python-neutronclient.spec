@@ -1,5 +1,5 @@
 Name:       python-neutronclient
-Version:    2.3.9
+Version:    2.3.11
 Release:    1%{?dist}
 Summary:    Python API and CLI for OpenStack Neutron
 
@@ -7,8 +7,6 @@ Group:      Development/Languages
 License:    ASL 2.0
 URL:        http://launchpad.net/python-neutronclient/
 Source0:    https://pypi.python.org/packages/source/p/%{name}/%{name}-%{version}.tar.gz
-
-Patch0001: 0001-Remove-runtime-dependency-on-python-pbr.patch
 
 BuildArch:  noarch
 
@@ -20,10 +18,15 @@ BuildRequires: python-d2to1
 Requires: pyparsing
 Requires: python-cliff >= 1.0
 Requires: python-keystoneclient >= 0.9.0
+Requires: python-oslo-i18n
+Requires: python-oslo-serialization
+Requires: python-oslo-utils
+Requires: python-pbr
 Requires: python-prettytable >= 0.6
 Requires: python-requests
 Requires: python-setuptools
 Requires: python-simplejson
+
 
 %description
 Client library and command line utility for interacting with Openstack
@@ -31,11 +34,6 @@ Neutron's API.
 
 %prep
 %setup -q -n %{name}-%{version}
-
-%patch0001 -p1
-
-# We provide version like this in order to remove runtime dep on pbr.
-sed -i s/REDHATNEUTRONCLIENTVERSION/%{version}/ neutronclient/version.py
 
 # Let RPM handle the dependencies
 rm -f test-requirements.txt requirements.txt
@@ -62,6 +60,11 @@ rm -rf %{buildroot}%{python_sitelib}/neutronclient/tests
 %{_sysconfdir}/bash_completion.d
 
 %changelog
+* Fri Mar 27 2015 Haikel Guemar <hguemar@fedoraproject.org> 2.3.11-1
+- Update to upstream 2.3.11
+- Add Requires: python-pbr (drop the patch)
+- Add Requires: python-oslo-i18n, python-oslo-serialization, python-oslo-utils
+
 * Mon Oct 13 2014 Jakub Ruzicka <jruzicka@redhat.com> 2.3.9-1
 - Update to upstream 2.3.9
 
