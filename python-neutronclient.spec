@@ -1,5 +1,5 @@
 Name:       python-neutronclient
-Version:    2.3.11
+Version:    2.4.0
 Release:    1%{?dist}
 Summary:    Python API and CLI for OpenStack Neutron
 
@@ -60,6 +60,9 @@ rm -rf %{buildroot}%{python_sitelib}/neutronclient/tests
 %{_sysconfdir}/bash_completion.d
 
 %changelog
+* Thu May 28 2015 Haikel Guemar <hguemar@fedoraproject.org> 2.4.0-1
+- Update to upstream 2.4.0
+
 * Fri Mar 27 2015 Haikel Guemar <hguemar@fedoraproject.org> 2.3.11-1
 - Update to upstream 2.3.11
 - Add Requires: python-pbr (drop the patch)
