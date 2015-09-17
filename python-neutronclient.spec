@@ -1,11 +1,12 @@
+%{!?upstream_version: %global upstream_version %{version}%{?milestone}}
+
 Name:       python-neutronclient
-Version:    2.4.0
-Release:    2%{?dist}
+Version:    3.0.0
+Release:    1%{?dist}
 Summary:    Python API and CLI for OpenStack Neutron
 
-Group:      Development/Languages
 License:    ASL 2.0
-URL:        http://launchpad.net/python-neutronclient/
+URL:        http://launchpad.net/%{name}
 Source0:    https://pypi.python.org/packages/source/p/%{name}/%{name}-%{version}.tar.gz
 
 BuildArch:  noarch
@@ -16,16 +17,20 @@ BuildRequires: python-pbr
 BuildRequires: python-d2to1
 
 Requires: pyparsing
-Requires: python-cliff >= 1.0
-Requires: python-keystoneclient >= 0.9.0
-Requires: python-oslo-i18n
-Requires: python-oslo-serialization
-Requires: python-oslo-utils
+Requires: python-cliff >= 1.14.0
+Requires: python-keystoneclient >= 1.6.0
+Requires: python-oslo-i18n >= 1.5.0
+Requires: python-oslo-serialization >= 1.4.0
+Requires: python-oslo-utils >= 2.0.0
 Requires: python-pbr
 Requires: python-prettytable >= 0.6
-Requires: python-requests
+Requires: python-requests >= 2.5.2
 Requires: python-setuptools
 Requires: python-simplejson
+Requires: python-babel
+Requires: python-iso8601
+Requires: python-netaddr
+Requires: python-six >= 1.9.0
 
 
 %description
@@ -33,16 +38,16 @@ Client library and command line utility for interacting with Openstack
 Neutron's API.
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q -n %{name}-%{upstream_version}
 
 # Let RPM handle the dependencies
 rm -f test-requirements.txt requirements.txt
 
 %build
-%{__python} setup.py build
+%{__python2} setup.py build
 
 %install
-%{__python} setup.py install -O1 --skip-build --root %{buildroot}
+%{__python2} setup.py install -O1 --skip-build --root %{buildroot}
 
 # Install other needed files
 install -p -D -m 644 tools/neutron.bash_completion \
@@ -52,14 +57,17 @@ install -p -D -m 644 tools/neutron.bash_completion \
 rm -rf %{buildroot}%{python_sitelib}/neutronclient/tests
 
 %files
-%doc LICENSE
+%license LICENSE
 %doc README.rst
 %{_bindir}/neutron
-%{python_sitelib}/neutronclient
-%{python_sitelib}/*.egg-info
+%{python2_sitelib}/neutronclient
+%{python2_sitelib}/*.egg-info
 %{_sysconfdir}/bash_completion.d
 
 %changelog
+* Thu Sep 17 2015 Alan Pevec <alan.pevec@redhat.com> 3.0.0-1
+- Update to upstream 3.0.0
+
 * Thu Jun 18 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.4.0-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_23_Mass_Rebuild
 
