@@ -1,7 +1,7 @@
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 
 Name:       python-neutronclient
-Version:    3.0.0
+Version:    3.1.0
 Release:    1%{?dist}
 Summary:    Python API and CLI for OpenStack Neutron
 
@@ -65,6 +65,9 @@ rm -rf %{buildroot}%{python_sitelib}/neutronclient/tests
 %{_sysconfdir}/bash_completion.d
 
 %changelog
+* Tue Sep 22 2015 Alan Pevec <alan.pevec@redhat.com> 3.1.0-1
+- Update to upstream 3.1.0
+
 * Thu Sep 17 2015 Alan Pevec <alan.pevec@redhat.com> 3.0.0-1
 - Update to upstream 3.0.0
 
