@@ -1,3 +1,5 @@
-# UUID                                  	Group Name
-#
-272cc1eff11e876a32f4626d0a359f7f82e45640	neutronclient-distgit-ptl
+# UUID          Group Name
+6ddfecad023c6f4fa3ac8c4d2583c502ea675a73 	Non-Interactive Users
+ed842d11ae0f97074f4ea433b6be249cf6f6de29       	neutronclient-distgit-core
+272cc1eff11e876a32f4626d0a359f7f82e45640        	neutronclient-distgit-ptl
+global:Registered-Users		Registered Users
