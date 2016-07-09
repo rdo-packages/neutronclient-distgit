@@ -1,3 +1,11 @@
+%{!?upstream_version: %global upstream_version %{version}%{?milestone}}
+
+%global sname neutronclient
+
+%if 0%{?fedora}
+%global with_python3 1
+%endif
+
 Name:       python-neutronclient
 Version:    XXX
 Release:    XXX
@@ -5,9 +13,17 @@ Summary:    Python API and CLI for OpenStack Neutron
 
 License:    ASL 2.0
 URL:        http://launchpad.net/python-neutronclient/
-Source0:    https://pypi.python.org/packages/source/p/%{name}/%{name}-%{version}.tar.gz
+Source0:    http://tarballs.openstack.org/python-neutronclient/%{name}/%{name}-%{version}.tar.gz
 
 BuildArch:  noarch
+
+%description
+Client library and command line utility for interacting with OpenStack
+Neutron's API.
+
+%package -n python2-%{sname}
+Summary:    Python API and CLI for OpenStack Neutron
+%{?python_provide:%python_provide python2-neutronclient}
 
 BuildRequires: python2-devel
 BuildRequires: python-setuptools
@@ -16,7 +32,6 @@ BuildRequires: python-pbr
 Requires: python-babel >= 1.3
 Requires: python-cliff >= 1.14.0
 Requires: python-iso8601 >= 0.1.9
-Requires: python-keystoneclient >= 1.6.0
 Requires: python-netaddr >= 0.7.12
 Requires: python-os-client-config >= 1.13.1
 Requires: python-oslo-i18n >= 1.5.0
@@ -26,24 +41,52 @@ Requires: python-pbr
 Requires: python-requests >= 2.5.2
 Requires: python-simplejson >= 2.2.0
 Requires: python-six >= 1.9.0
+Requires: python-debtcollector
+Requires: python-keystoneauth1
 
-
-%description
+%description -n python2-%{sname}
 Client library and command line utility for interacting with OpenStack
 Neutron's API.
 
+%if 0%{?with_python3}
+%package -n python3-%{sname}
+Summary:    Python API and CLI for OpenStack Neutron
+%{?python_provide:%python_provide python3-neutronclient}
 
-%package tests
-Summary:	OpenStack Neutron client tests
-Requires:	%{name} = %{version}-%{release}
+BuildRequires: python3-devel
+BuildRequires: python3-setuptools
+BuildRequires: python3-pbr
 
+Requires: python3-babel >= 1.3
+Requires: python3-cliff >= 1.14.0
+Requires: python3-iso8601 >= 0.1.9
+Requires: python3-netaddr >= 0.7.12
+Requires: python3-os-client-config >= 1.13.1
+Requires: python3-oslo-i18n >= 1.5.0
+Requires: python3-oslo-serialization >= 1.4.0
+Requires: python3-oslo-utils >= 2.0.0
+Requires: python3-pbr
+Requires: python3-requests >= 2.5.2
+Requires: python3-simplejson >= 2.2.0
+Requires: python3-six >= 1.9.0
+Requires: python3-debtcollector
+Requires: python3-keystoneauth1
 
-%description tests
+%description -n python3-%{sname}
 Client library and command line utility for interacting with OpenStack
 Neutron's API.
+%endif
 
-This package contains client test files.
+%package doc
+Summary:          Documentation for OpenStack Neutron API Client
 
+BuildRequires:    python-sphinx
+BuildRequires:    python-oslo-sphinx
+BuildRequires:    python-reno
+
+%description      doc
+Client library and command line utility for interacting with OpenStack
+Neutron's API.
 
 %prep
 %setup -q -n %{name}-%{upstream_version}
@@ -52,26 +95,54 @@ This package contains client test files.
 rm -f test-requirements.txt requirements.txt
 
 %build
-%{__python2} setup.py build
+%py2_build
+%if 0%{?with_python3}
+%py3_build
+%endif
 
 %install
-%{__python2} setup.py install -O1 --skip-build --root %{buildroot}
+%if 0%{?with_python3}
+%py3_install
+mv %{buildroot}%{_bindir}/neutron %{buildroot}%{_bindir}/neutron-%{python3_version}
+ln -s ./neutron-%{python3_version} %{buildroot}%{_bindir}/neutron-3
+# Delete tests
+rm -fr %{buildroot}%{python3_sitelib}/neutronclient/tests
+%endif
 
-# Install other needed files
-install -p -D -m 644 tools/neutron.bash_completion \
-    %{buildroot}%{_sysconfdir}/bash_completion.d/neutron.bash_completion
+%py2_install
+mv %{buildroot}%{_bindir}/neutron %{buildroot}%{_bindir}/neutron-%{python2_version}
+ln -s ./neutron-%{python2_version} %{buildroot}%{_bindir}/neutron-2
 
-%files
-%license LICENSE
+ln -s ./neutron-2 %{buildroot}%{_bindir}/neutron
+
+# Delete tests
+rm -fr %{buildroot}%{python2_sitelib}/neutronclient/tests
+
+export PYTHONPATH="$( pwd ):$PYTHONPATH"
+sphinx-build -b html doc/source html
+
+
+%files -n python2-%{sname}
 %doc README.rst
-%{_bindir}/neutron
+%license LICENSE
 %{python2_sitelib}/neutronclient
 %{python2_sitelib}/*.egg-info
-%{_sysconfdir}/bash_completion.d
-%exclude %{python2_sitelib}/neutronclient/tests
+%{_bindir}/neutron
+%{_bindir}/neutron-2
+%{_bindir}/neutron-%{python2_version}
 
-%files tests
+%if 0%{?with_python3}
+%files -n python3-%{sname}
 %license LICENSE
-%{python2_sitelib}/neutronclient/tests
+%doc README.rst
+%{python3_sitelib}/%{sname}
+%{python3_sitelib}/*.egg-info
+%{_bindir}/neutron-3
+%{_bindir}/neutron-%{python3_version}
+%endif
+
+%files doc
+%doc html
+%license LICENSE
 
 %changelog
