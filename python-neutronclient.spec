@@ -148,3 +148,4 @@ sphinx-build -b html doc/source html
 %license LICENSE
 
 %changelog
+# REMOVEME: error caused by commit 
