@@ -7,8 +7,8 @@
 %endif
 
 Name:       python-neutronclient
-Version:    4.1.1
-Release:    2%{?dist}
+Version:    4.1.2
+Release:    1%{?dist}
 Summary:    Python API and CLI for OpenStack Neutron
 
 License:    ASL 2.0
@@ -146,5 +146,8 @@ sphinx-build -b html doc/source html
 %license LICENSE
 
 %changelog
+* Mon Jul 11 2016 Haikel Guemar <hguemar@fedoraproject.org> 4.1.2-1
+- Update to 4.1.2
+
 * Wed Mar 23 2016 RDO <rdo-list@redhat.com> 4.1.1-0.1
 -  Rebuild for Mitaka 4.1.1
