@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5adbc538_da4adb26",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 85
+      },
+      "writtenOn": "2016-11-21T20:48:18Z",
+      "side": 1,
+      "message": "@Chandan @Haikel\nI missed that this was removed without Obsoletes/Provides, what was the plan for backward compatibility.\nAlso why wouldn\u0027t we want test subpackaging in clients?",
+      "revId": "296abb5e9aee5019ea22b4f2235f12fae2916a43",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
