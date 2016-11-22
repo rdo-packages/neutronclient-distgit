@@ -17,6 +17,12 @@ Source0:    http://tarballs.openstack.org/%{name}/%{name}-%{version}.tar.gz
 
 BuildArch:  noarch
 
+# Tests are backported in RHOS 9 which causes conflicts with
+# python-neutronclient-tests subpackage during upgrade from RHOS9 to 10
+# It needs to be removed in RHOS 9.
+
+Obsoletes:  python-%{sname}-tests
+
 %description
 Client library and command line utility for interacting with OpenStack
 Neutron's API.
