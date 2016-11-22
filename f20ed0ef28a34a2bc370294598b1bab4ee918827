@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5adbc538_fafeb737",
+        "filename": "python-neutronclient.spec",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 127
+      },
+      "writtenOn": "2016-11-22T15:41:43Z",
+      "side": 1,
+      "message": "Noticed warning from one of my linter tools:\n\nunversioned-explicit-obsoletes python-%{sname}-tests\n\nIs there a reason we would want or not want unbounded obsoletes for this rpm?",
+      "revId": "f20ed0ef28a34a2bc370294598b1bab4ee918827",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
