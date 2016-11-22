@@ -17,6 +17,8 @@ Source0:    https://tarballs.openstack.org/%{name}/%{name}-%{upstream_version}.t
 
 BuildArch:  noarch
 
+Obsoletes:  python-%{sname}-tests
+
 %description
 Client library and command line utility for interacting with OpenStack
 Neutron's API.
