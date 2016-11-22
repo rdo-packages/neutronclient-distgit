@@ -22,6 +22,30 @@
       "revId": "e1a0ef82dfa024e3db2c1a0a1e5634c1ddd63711",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5adbc538_5ac7ab12",
+        "filename": "python-neutronclient.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 85
+      },
+      "writtenOn": "2016-11-22T15:29:28Z",
+      "side": 1,
+      "message": "yes python-neutronclient-4.1.1-2.el7 http://cbs.centos.org/koji/buildinfo?buildID\u003d10318 was RDO Mitaka GA build.",
+      "parentUuid": "5adbc538_9a5a1382",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 35
+      },
+      "revId": "e1a0ef82dfa024e3db2c1a0a1e5634c1ddd63711",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
     }
   ]
 }
