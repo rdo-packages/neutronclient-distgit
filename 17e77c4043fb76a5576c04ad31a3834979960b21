@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5adbc538_5aeecb8c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 85
+      },
+      "writtenOn": "2016-11-22T15:33:31Z",
+      "side": 1,
+      "message": "Obsoletes but that\u0027s still WHAT,\nWHY would be \"Fix Mitaka upgrade with python-neutronclient-tests\"",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 9
+      },
+      "revId": "17e77c4043fb76a5576c04ad31a3834979960b21",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5adbc538_fad797bd",
+        "filename": "python-neutronclient.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 85
+      },
+      "writtenOn": "2016-11-22T15:33:31Z",
+      "side": 1,
+      "message": "the same info in commit message is enough, no need to repeat it in comments here or one line at most e.g. # for upgrades from Mitaka GA build",
+      "revId": "17e77c4043fb76a5576c04ad31a3834979960b21",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
