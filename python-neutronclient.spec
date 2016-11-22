@@ -17,6 +17,11 @@ Source0:    https://tarballs.openstack.org/%{name}/%{name}-%{upstream_version}.t
 
 BuildArch:  noarch
 
+# Since RDO Mitaka at GA had python-neutronclient-tests
+# We need to obsoletes this test subpackage other it will
+# affect while upgrade from Mitaka to Newton
+Obsoletes:  python-%{sname}-tests
+
 %description
 Client library and command line utility for interacting with OpenStack
 Neutron's API.
