@@ -17,7 +17,7 @@ Source0:    https://tarballs.openstack.org/%{name}/%{name}-%{upstream_version}.t
 
 BuildArch:  noarch
 
-Obsoletes:  python-%{sname}-tests <= 4.1.1
+Obsoletes:  python-%{sname}-tests <= 4.1.1-3
 
 %description
 Client library and command line utility for interacting with OpenStack
