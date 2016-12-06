@@ -8,7 +8,7 @@
 
 Name:       python-neutronclient
 Version:    6.0.0
-Release:    1%{?dist}
+Release:    2%{?dist}
 Summary:    Python API and CLI for OpenStack Neutron
 
 License:    ASL 2.0
@@ -150,6 +150,9 @@ sphinx-build -b html doc/source html
 %license LICENSE
 
 %changelog
+* Tue Dec  6 2016 Haïkel Guémar <hguemar@fedoraproject.org> - 6.0.0-2
+- Fix Obsoletes
+
 * Mon Sep 12 2016 Haikel Guemar <hguemar@fedoraproject.org> 6.0.0-1
 - Update to 6.0.0
 
