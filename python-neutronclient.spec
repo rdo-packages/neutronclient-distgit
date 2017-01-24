@@ -150,3 +150,4 @@ sphinx-build -b html doc/source html
 %license LICENSE
 
 %changelog
+# REMOVEME: error caused by commit http://git.openstack.org/cgit/openstack/python-neutronclient/commit/?id=a910bf78aa2f633399a65931439be8bd17aa5699
