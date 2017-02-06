@@ -34,6 +34,24 @@
       "revId": "ac204fd101e9893d6b26c6f6a6d2bbdd9f1ceaeb",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baada198_d8cd825f",
+        "filename": "python-neutronclient.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 111
+      },
+      "writtenOn": "2017-02-06T10:20:55Z",
+      "side": 1,
+      "message": "yup., Then it is good to go.",
+      "parentUuid": "baada198_989eaa55",
+      "revId": "ac204fd101e9893d6b26c6f6a6d2bbdd9f1ceaeb",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
     }
   ]
 }
