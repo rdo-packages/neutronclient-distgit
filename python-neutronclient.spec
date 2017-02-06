@@ -32,20 +32,21 @@ BuildRequires: python-setuptools
 BuildRequires: python-pbr
 
 Requires: python-babel >= 2.3.4
-Requires: python-cliff >= 1.15.0
+Requires: python-cliff >= 2.3.0
 Requires: python-iso8601 >= 0.1.11
 Requires: python-netaddr >= 0.7.12
-Requires: python-os-client-config >= 1.13.1
+Requires: python-os-client-config >= 1.22.0
 Requires: python-oslo-i18n >= 2.1.0
 Requires: python-oslo-serialization >= 1.10.0
-Requires: python-oslo-utils >= 3.16.0
+Requires: python-oslo-utils >= 3.18.0
 Requires: python-pbr
 Requires: python-requests >= 2.10.0
 Requires: python-simplejson >= 2.2.0
 Requires: python-six >= 1.9.0
 Requires: python-debtcollector
-Requires: python-osc-lib
-Requires: python-keystoneauth1 >= 2.10.0
+Requires: python-osc-lib >= 1.2.0
+Requires: python-keystoneauth1 >= 2.18.0
+Requires: python-keystoneclient >= 1:3.8.0
 
 %description -n python2-%{sname}
 Client library and command line utility for interacting with OpenStack
@@ -61,20 +62,21 @@ BuildRequires: python3-setuptools
 BuildRequires: python3-pbr
 
 Requires: python3-babel >= 2.3.4
-Requires: python3-cliff >= 1.15.0
+Requires: python3-cliff >= 2.3.0
 Requires: python3-iso8601 >= 0.1.11
 Requires: python3-netaddr >= 0.7.12
-Requires: python3-os-client-config >= 1.13.1
+Requires: python3-os-client-config >= 1.22.0
 Requires: python3-oslo-i18n >= 2.1.0
 Requires: python3-oslo-serialization >= 1.10.0
-Requires: python3-oslo-utils >= 3.16.0
+Requires: python3-oslo-utils >= 3.18.0
 Requires: python3-pbr
 Requires: python3-requests >= 2.10.0
 Requires: python3-simplejson >= 2.2.0
 Requires: python3-six >= 1.9.0
 Requires: python3-debtcollector
-Requires: python3-osc-lib
-Requires: python3-keystoneauth1 >= 2.10.0
+Requires: python3-osc-lib >= 1.2.0
+Requires: python3-keystoneauth1 >= 2.18.0
+Requires: python3-keystoneclient >= 1:3.8.0
 
 %description -n python3-%{sname}
 Client library and command line utility for interacting with OpenStack
