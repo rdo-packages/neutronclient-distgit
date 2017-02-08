@@ -7,8 +7,8 @@
 %endif
 
 Name:       python-neutronclient
-Version:    XXX
-Release:    XXX
+Version:    6.1.0
+Release:    1%{?dist}
 Summary:    Python API and CLI for OpenStack Neutron
 
 License:    ASL 2.0
@@ -152,3 +152,6 @@ sphinx-build -b html doc/source html
 %license LICENSE
 
 %changelog
+* Wed Feb 08 2017 Alfredo Moralejo <amoralej@redhat.com> 6.1.0-1
+- Update to 6.1.0
+
