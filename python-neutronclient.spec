@@ -87,7 +87,7 @@ Neutron's API.
 Summary:          Documentation for OpenStack Neutron API Client
 
 BuildRequires:    python-sphinx
-BuildRequires:    python-oslo-sphinx
+BuildRequires:    python-openstackdocstheme
 BuildRequires:    python-reno
 
 %description      doc
