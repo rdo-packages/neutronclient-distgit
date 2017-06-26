@@ -87,8 +87,9 @@ Neutron's API.
 Summary:          Documentation for OpenStack Neutron API Client
 
 BuildRequires:    python-sphinx
-BuildRequires:    python-oslo-sphinx
+BuildRequires:    python-openstackdocstheme
 BuildRequires:    python-reno
+BuildRequires:    python-oslo-utils
 
 %description      doc
 Client library and command line utility for interacting with OpenStack
@@ -125,8 +126,7 @@ ln -s ./neutron-2 %{buildroot}%{_bindir}/neutron
 rm -fr %{buildroot}%{python2_sitelib}/neutronclient/tests
 
 export PYTHONPATH="$( pwd ):$PYTHONPATH"
-sphinx-build -b html doc/source html
-
+%{__python2} setup.py build_sphinx -b html
 
 %files -n python2-%{sname}
 %doc README.rst
@@ -148,7 +148,7 @@ sphinx-build -b html doc/source html
 %endif
 
 %files doc
-%doc html
+%doc doc/build/html
 %license LICENSE
 
 %changelog
