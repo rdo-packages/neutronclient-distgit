@@ -27,6 +27,7 @@ Neutron's API.
 Summary:    Python API and CLI for OpenStack Neutron
 %{?python_provide:%python_provide python2-neutronclient}
 
+BuildRequires: git
 BuildRequires: python2-devel
 BuildRequires: python-setuptools
 BuildRequires: python-pbr
@@ -87,15 +88,22 @@ Neutron's API.
 Summary:          Documentation for OpenStack Neutron API Client
 
 BuildRequires:    python-sphinx
-BuildRequires:    python-oslo-sphinx
+BuildRequires:    python-openstackdocstheme
 BuildRequires:    python-reno
+BuildRequires:    python-cliff
+BuildRequires:    python-keystoneauth1
+BuildRequires:    python-keystoneclient
+BuildRequires:    python-os-client-config
+BuildRequires:    python-osc-lib
+BuildRequires:    python-oslo-serialization
+BuildRequires:    python-oslo-utils
 
 %description      doc
 Client library and command line utility for interacting with OpenStack
 Neutron's API.
 
 %prep
-%setup -q -n %{name}-%{upstream_version}
+%autosetup -n %{name}-%{upstream_version} -S git
 
 # Let RPM handle the dependencies
 rm -f test-requirements.txt requirements.txt
@@ -125,8 +133,7 @@ ln -s ./neutron-2 %{buildroot}%{_bindir}/neutron
 rm -fr %{buildroot}%{python2_sitelib}/neutronclient/tests
 
 export PYTHONPATH="$( pwd ):$PYTHONPATH"
-sphinx-build -b html doc/source html
-
+%{__python2} setup.py build_sphinx -b html
 
 %files -n python2-%{sname}
 %doc README.rst
@@ -148,7 +155,7 @@ sphinx-build -b html doc/source html
 %endif
 
 %files doc
-%doc html
+%doc doc/build/html
 %license LICENSE
 
 %changelog
