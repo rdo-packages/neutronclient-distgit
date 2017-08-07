@@ -132,7 +132,6 @@ ln -s ./neutron-2 %{buildroot}%{_bindir}/neutron
 # Delete tests
 rm -fr %{buildroot}%{python2_sitelib}/neutronclient/tests
 
-export PYTHONPATH="$( pwd ):$PYTHONPATH"
 %{__python2} setup.py build_sphinx -b html
 
 %files -n python2-%{sname}
