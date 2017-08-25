@@ -7,7 +7,7 @@
 %endif
 
 Name:       python-neutronclient
-Version:    6.1.0
+Version:    6.1.1
 Release:    1%{?dist}
 Summary:    Python API and CLI for OpenStack Neutron
 
@@ -152,6 +152,9 @@ sphinx-build -b html doc/source html
 %license LICENSE
 
 %changelog
+* Fri Aug 25 2017 rdo-trunk <javier.pena@redhat.com> 6.1.1-1
+- Update to 6.1.1
+
 * Wed Feb 08 2017 Alfredo Moralejo <amoralej@redhat.com> 6.1.0-1
 - Update to 6.1.0
 
