@@ -115,6 +115,12 @@ Neutron's API.
 %py3_build
 %endif
 
+# Build HTML docs
+%{__python2} setup.py build_sphinx -b html
+
+# Fix hidden-file-or-dir warnings
+rm -rf doc/build/html/.doctrees doc/build/html/.buildinfo
+
 %install
 %if 0%{?with_python3}
 %py3_install
@@ -133,7 +139,6 @@ ln -s ./neutron-2 %{buildroot}%{_bindir}/neutron
 # Delete tests
 rm -fr %{buildroot}%{python2_sitelib}/neutronclient/tests
 
-%{__python2} setup.py build_sphinx -b html
 
 %files -n python2-%{sname}
 %doc README.rst
