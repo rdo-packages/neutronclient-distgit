@@ -139,6 +139,8 @@ ln -s ./neutron-2 %{buildroot}%{_bindir}/neutron
 # Delete tests
 rm -fr %{buildroot}%{python2_sitelib}/neutronclient/tests
 
+%check
+%{__python2} setup.py testr
 
 %files -n python2-%{sname}
 %doc README.rst
