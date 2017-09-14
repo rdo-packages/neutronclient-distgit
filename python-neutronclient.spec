@@ -12,7 +12,7 @@ Release:    XXX
 Summary:    Python API and CLI for OpenStack Neutron
 
 License:    ASL 2.0
-URL:        http://launchpad.net/python-neutronclient/
+URL:        http://launchpad.net/%{name}/
 Source0:    https://tarballs.openstack.org/%{name}/%{name}-%{upstream_version}.tar.gz
 
 BuildArch:  noarch
