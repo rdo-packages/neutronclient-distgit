@@ -158,6 +158,12 @@ BuildRequires:    python-oslo-utils
 %py3_build
 %endif
 
+# Build HTML docs
+%{__python2} setup.py build_sphinx -b html
+
+# Fix hidden-file-or-dir warnings
+rm -rf doc/build/html/.doctrees doc/build/html/.buildinfo
+
 %install
 %if 0%{?with_python3}
 %py3_install
@@ -169,8 +175,6 @@ ln -s ./neutron-%{python3_version} %{buildroot}%{_bindir}/neutron-3
 mv %{buildroot}%{_bindir}/neutron %{buildroot}%{_bindir}/neutron-%{python2_version}
 ln -s ./neutron-%{python2_version} %{buildroot}%{_bindir}/neutron-2
 ln -s ./neutron-2 %{buildroot}%{_bindir}/neutron
-
-%{__python2} setup.py build_sphinx -b html
 
 %check
 %{__python2} setup.py testr
