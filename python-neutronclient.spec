@@ -28,6 +28,7 @@ Summary:    Python API and CLI for OpenStack Neutron
 %{?python_provide:%python_provide python2-neutronclient}
 
 BuildRequires: git
+BuildRequires: openstack-macros
 BuildRequires: python2-devel
 BuildRequires: python-setuptools
 BuildRequires: python-pbr
@@ -106,7 +107,7 @@ Neutron's API.
 %autosetup -n %{name}-%{upstream_version} -S git
 
 # Let RPM handle the dependencies
-rm -f test-requirements.txt requirements.txt
+%py_req_cleanup
 
 %build
 %py2_build
