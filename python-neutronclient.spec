@@ -6,6 +6,10 @@
 %global with_python3 1
 %endif
 
+%global common_desc \
+Client library and command line utility for interacting with OpenStack \
+Neutron's API.
+
 Name:       python-neutronclient
 Version:    XXX
 Release:    XXX
@@ -20,8 +24,7 @@ BuildArch:  noarch
 Obsoletes:  python-%{sname}-tests <= 4.1.1-3
 
 %description
-Client library and command line utility for interacting with OpenStack
-Neutron's API.
+%{common_desc}
 
 %package -n python2-%{sname}
 Summary:    Python API and CLI for OpenStack Neutron
@@ -51,8 +54,7 @@ Requires: python-keystoneauth1 >= 3.1.0
 Requires: python-keystoneclient >= 1:3.8.0
 
 %description -n python2-%{sname}
-Client library and command line utility for interacting with OpenStack
-Neutron's API.
+%{common_desc}
 
 %if 0%{?with_python3}
 %package -n python3-%{sname}
@@ -81,8 +83,7 @@ Requires: python3-keystoneauth1 >= 3.1.0
 Requires: python3-keystoneclient >= 1:3.8.0
 
 %description -n python3-%{sname}
-Client library and command line utility for interacting with OpenStack
-Neutron's API.
+%{common_desc}
 %endif
 
 %package doc
@@ -100,8 +101,7 @@ BuildRequires:    python-oslo-serialization
 BuildRequires:    python-oslo-utils
 
 %description      doc
-Client library and command line utility for interacting with OpenStack
-Neutron's API.
+%{common_desc}
 
 %prep
 %autosetup -n %{name}-%{upstream_version} -S git
