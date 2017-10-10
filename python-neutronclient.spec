@@ -35,6 +35,12 @@ BuildRequires: openstack-macros
 BuildRequires: python2-devel
 BuildRequires: python-setuptools
 BuildRequires: python-pbr
+# Required for unit tests
+BuildRequires: python2-osc-lib-tests
+BuildRequires: python-oslotest
+BuildRequires: python-testrepository
+BuildRequires: python-testtools
+BuildRequires: python-testscenarios
 
 Requires: python-babel >= 2.3.4
 Requires: python-cliff >= 2.8.0
@@ -56,6 +62,21 @@ Requires: python-keystoneclient >= 1:3.8.0
 %description -n python2-%{sname}
 %{common_desc}
 
+%package -n python2-%{sname}-tests
+Summary:    Python API and CLI for OpenStack Neutron - Unit tests
+%{?python_provide:%python_provide python2-%{sname}-tests}
+Requires: python2-%{sname} == %{version}-%{release}
+Requires: python2-osc-lib-tests
+Requires: python-oslotest
+Requires: python-testrepository
+Requires: python-testtools
+Requires: python-testscenarios
+
+%description -n python2-%{sname}-tests
+%{common_desc}
+
+This package containts the unit tests.
+
 %if 0%{?with_python3}
 %package -n python3-%{sname}
 Summary:    Python API and CLI for OpenStack Neutron
@@ -64,6 +85,12 @@ Summary:    Python API and CLI for OpenStack Neutron
 BuildRequires: python3-devel
 BuildRequires: python3-setuptools
 BuildRequires: python3-pbr
+# Required for unit tests
+BuildRequires: python3-osc-lib-tests
+BuildRequires: python3-oslotest
+BuildRequires: python3-testrepository
+BuildRequires: python3-testtools
+BuildRequires: python3-testscenarios
 
 Requires: python3-babel >= 2.3.4
 Requires: python3-cliff >= 2.8.0
@@ -84,6 +111,22 @@ Requires: python3-keystoneclient >= 1:3.8.0
 
 %description -n python3-%{sname}
 %{common_desc}
+
+
+%package -n python3-%{sname}-tests
+Summary:    Python API and CLI for OpenStack Neutron - Unit tests
+%{?python_provide:%python_provide python3-%{sname}-tests}
+Requires: python3-%{sname} == %{version}-%{release}
+Requires: python3-osc-lib-tests
+Requires: python3-oslotest
+Requires: python3-testrepository
+Requires: python3-testtools
+Requires: python3-testscenarios
+
+%description -n python3-%{sname}-tests
+%{common_desc}
+
+This package containts the unit tests.
 %endif
 
 %package doc
@@ -120,20 +163,21 @@ BuildRequires:    python-oslo-utils
 %py3_install
 mv %{buildroot}%{_bindir}/neutron %{buildroot}%{_bindir}/neutron-%{python3_version}
 ln -s ./neutron-%{python3_version} %{buildroot}%{_bindir}/neutron-3
-# Delete tests
-rm -fr %{buildroot}%{python3_sitelib}/neutronclient/tests
 %endif
 
 %py2_install
 mv %{buildroot}%{_bindir}/neutron %{buildroot}%{_bindir}/neutron-%{python2_version}
 ln -s ./neutron-%{python2_version} %{buildroot}%{_bindir}/neutron-2
-
 ln -s ./neutron-2 %{buildroot}%{_bindir}/neutron
 
-# Delete tests
-rm -fr %{buildroot}%{python2_sitelib}/neutronclient/tests
-
 %{__python2} setup.py build_sphinx -b html
+
+%check
+%{__python2} setup.py testr
+%if 0%{?with_python3}
+rm -rf .testrepository
+%{__python3} setup.py testr
+%endif
 
 %files -n python2-%{sname}
 %doc README.rst
@@ -143,6 +187,10 @@ rm -fr %{buildroot}%{python2_sitelib}/neutronclient/tests
 %{_bindir}/neutron
 %{_bindir}/neutron-2
 %{_bindir}/neutron-%{python2_version}
+%exclude %{python2_sitelib}/neutronclient/tests
+
+%files -n python2-%{sname}-tests
+%{python2_sitelib}/neutronclient/tests
 
 %if 0%{?with_python3}
 %files -n python3-%{sname}
@@ -152,6 +200,10 @@ rm -fr %{buildroot}%{python2_sitelib}/neutronclient/tests
 %{python3_sitelib}/*.egg-info
 %{_bindir}/neutron-3
 %{_bindir}/neutron-%{python3_version}
+%exclude %{python3_sitelib}/neutronclient/tests
+
+%files -n python3-%{sname}-tests
+%{python3_sitelib}/neutronclient/tests
 %endif
 
 %files doc
