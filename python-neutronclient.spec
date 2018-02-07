@@ -33,31 +33,42 @@ Summary:    Python API and CLI for OpenStack Neutron
 BuildRequires: git
 BuildRequires: openstack-macros
 BuildRequires: python2-devel
-BuildRequires: python-setuptools
-BuildRequires: python-pbr
+BuildRequires: python2-setuptools
+BuildRequires: python2-pbr
 # Required for unit tests
 BuildRequires: python2-osc-lib-tests
-BuildRequires: python-oslotest
+BuildRequires: python2-oslotest
+BuildRequires: python2-testtools
+%if 0%{?fedora} > 0
+BuildRequires: python2-testrepository
+BuildRequires: python2-testscenarios
+%else
 BuildRequires: python-testrepository
-BuildRequires: python-testtools
 BuildRequires: python-testscenarios
+%endif
 
-Requires: python-babel >= 2.3.4
+Requires: python2-babel >= 2.3.4
+Requires: python2-iso8601 >= 0.1.11
+Requires: python2-os-client-config >= 1.28.0
+Requires: python2-oslo-i18n >= 3.15.3
+Requires: python2-oslo-serialization >= 2.18.0
+Requires: python2-oslo-utils >= 3.33.0
+Requires: python2-pbr
+Requires: python2-requests >= 2.14.2
+Requires: python2-six >= 1.10.0
+Requires: python2-debtcollector >= 1.2.0
+Requires: python2-osc-lib >= 1.8.0
+Requires: python2-keystoneauth1 >= 3.3.0
+Requires: python2-keystoneclient >= 1:3.8.0
+%if 0%{?fedora} > 0
+Requires: python2-cliff >= 2.8.0
+Requires: python2-netaddr >= 0.7.18
+Requires: python2-simplejson >= 3.5.1
+%else
 Requires: python-cliff >= 2.8.0
-Requires: python-iso8601 >= 0.1.11
-Requires: python-netaddr >= 0.7.13
-Requires: python-os-client-config >= 1.28.0
-Requires: python-oslo-i18n >= 2.1.0
-Requires: python-oslo-serialization >= 1.10.0
-Requires: python-oslo-utils >= 3.20.0
-Requires: python-pbr
-Requires: python-requests >= 2.10.0
-Requires: python-simplejson >= 2.2.0
-Requires: python-six >= 1.9.0
-Requires: python-debtcollector >= 1.2.0
-Requires: python-osc-lib >= 1.7.0
-Requires: python-keystoneauth1 >= 3.1.0
-Requires: python-keystoneclient >= 1:3.8.0
+Requires: python-netaddr >= 0.7.18
+Requires: python-simplejson >= 3.5.1
+%endif
 
 %description -n python2-%{sname}
 %{common_desc}
@@ -67,10 +78,15 @@ Summary:    Python API and CLI for OpenStack Neutron - Unit tests
 %{?python_provide:%python_provide python2-%{sname}-tests}
 Requires: python2-%{sname} == %{version}-%{release}
 Requires: python2-osc-lib-tests
-Requires: python-oslotest
+Requires: python2-oslotest
+Requires: python2-testtools
+%if 0%{?fedora} > 0
+Requires: python2-testrepository
+Requires: python2-testscenarios
+%else
 Requires: python-testrepository
-Requires: python-testtools
 Requires: python-testscenarios
+%endif
 
 %description -n python2-%{sname}-tests
 %{common_desc}
@@ -95,18 +111,18 @@ BuildRequires: python3-testscenarios
 Requires: python3-babel >= 2.3.4
 Requires: python3-cliff >= 2.8.0
 Requires: python3-iso8601 >= 0.1.11
-Requires: python3-netaddr >= 0.7.13
+Requires: python3-netaddr >= 0.7.18
 Requires: python3-os-client-config >= 1.28.0
-Requires: python3-oslo-i18n >= 2.1.0
-Requires: python3-oslo-serialization >= 1.10.0
-Requires: python3-oslo-utils >= 3.20.0
+Requires: python3-oslo-i18n >= 3.15.3
+Requires: python3-oslo-serialization >= 2.18.0
+Requires: python3-oslo-utils >= 3.33.0
 Requires: python3-pbr
-Requires: python3-requests >= 2.10.0
-Requires: python3-simplejson >= 2.2.0
-Requires: python3-six >= 1.9.0
+Requires: python3-requests >= 2.14.2
+Requires: python3-simplejson >= 3.5.1
+Requires: python3-six >= 1.10.0
 Requires: python3-debtcollector >= 1.2.0
-Requires: python3-osc-lib >= 1.7.0
-Requires: python3-keystoneauth1 >= 3.1.0
+Requires: python3-osc-lib >= 1.8.0
+Requires: python3-keystoneauth1 >= 3.3.0
 Requires: python3-keystoneclient >= 1:3.8.0
 
 %description -n python3-%{sname}
@@ -132,16 +148,20 @@ This package containts the unit tests.
 %package doc
 Summary:          Documentation for OpenStack Neutron API Client
 
-BuildRequires:    python-sphinx
-BuildRequires:    python-openstackdocstheme
-BuildRequires:    python-reno
+BuildRequires:    python2-sphinx
+BuildRequires:    python2-openstackdocstheme
+BuildRequires:    python2-reno
+BuildRequires:    python2-keystoneauth1
+BuildRequires:    python2-keystoneclient
+BuildRequires:    python2-os-client-config
+BuildRequires:    python2-osc-lib
+BuildRequires:    python2-oslo-serialization
+BuildRequires:    python2-oslo-utils
+%if 0%{?fedora} > 0
+BuildRequires:    python2-cliff
+%else
 BuildRequires:    python-cliff
-BuildRequires:    python-keystoneauth1
-BuildRequires:    python-keystoneclient
-BuildRequires:    python-os-client-config
-BuildRequires:    python-osc-lib
-BuildRequires:    python-oslo-serialization
-BuildRequires:    python-oslo-utils
+%endif
 
 %description      doc
 %{common_desc}
