@@ -220,3 +220,4 @@ rm -rf .testrepository
 %license LICENSE
 
 %changelog
+# REMOVEME: error caused by commit http://git.openstack.org/cgit/openstack/python-neutronclient/commit/?id=d8df387b9c058fd69f40f6bac50c81ee89abb707
