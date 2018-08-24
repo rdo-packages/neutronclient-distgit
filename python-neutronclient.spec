@@ -224,3 +224,4 @@ PYTHON=%{__python3} %{__python3} setup.py testr
 %license LICENSE
 
 %changelog
+# REMOVEME: error caused by commit http://git.openstack.org/cgit/openstack/python-neutronclient/commit/?id=d090ea27510db3903e3256ca518b645987edfdc7
