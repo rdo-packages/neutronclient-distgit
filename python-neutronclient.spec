@@ -97,6 +97,7 @@ BuildRequires: python3-oslotest
 BuildRequires: python3-testrepository
 BuildRequires: python3-testtools
 BuildRequires: python3-testscenarios
+BuildRequires: python3-keystoneclient
 
 Requires: python3-babel >= 2.3.4
 Requires: python3-cliff >= 2.8.0
@@ -185,12 +186,10 @@ ln -s ./neutron-%{python2_version} %{buildroot}%{_bindir}/neutron-2
 ln -s ./neutron-2 %{buildroot}%{_bindir}/neutron
 
 %check
-# (TODO) Ignore unit tests results until https://bugs.launchpad.net/python-neutronclient/+bug/1783789
-# is fixed.
-%{__python2} setup.py testr || true
+PYTHON=%{__python2} %{__python2} setup.py testr
 %if 0%{?with_python3}
 rm -rf .testrepository
-%{__python3} setup.py testr || true
+PYTHON=%{__python3} %{__python3} setup.py testr
 %endif
 
 %files -n python2-%{sname}
