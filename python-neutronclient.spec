@@ -1,10 +1,20 @@
+# Macros for py2/py3 compatibility
+%if 0%{?fedora} || 0%{?rhel} > 7
+%global pyver %{python3_pkgversion}
+%global __python %{__python3}
+%else
+%global pyver 2
+%global __python %{__python2}
+%endif
+%global pyver_bin python%{pyver}
+%global pyver_sitelib %python%{pyver}_sitelib
+%global pyver_install %py%{pyver}_install
+%global pyver_build %py%{pyver}_build
+# End of macros for py2/py3 compatibility
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 
-%global sname neutronclient
-
-%if 0%{?fedora}
-%global with_python3 1
-%endif
+%global cname neutron
+%global sname %{cname}client
 
 %global common_desc \
 Client library and command line utility for interacting with OpenStack \
@@ -26,129 +36,77 @@ Obsoletes:  python-%{sname}-tests <= 4.1.1-3
 %description
 %{common_desc}
 
-%package -n python2-%{sname}
+%package -n python%{pyver}-%{sname}
 Summary:    Python API and CLI for OpenStack Neutron
-%{?python_provide:%python_provide python2-neutronclient}
+%{?python_provide:%python_provide python%{pyver}-%{sname}}
 
 BuildRequires: git
 BuildRequires: openstack-macros
-BuildRequires: python2-devel
-BuildRequires: python2-setuptools
-BuildRequires: python2-pbr
+BuildRequires: python%{pyver}-devel
+BuildRequires: python%{pyver}-setuptools
+BuildRequires: python%{pyver}-pbr
 # Required for unit tests
-BuildRequires: python2-osc-lib-tests
-BuildRequires: python2-oslotest
-BuildRequires: python2-testtools
-BuildRequires: python2-testrepository
-BuildRequires: python2-testscenarios
+BuildRequires: python%{pyver}-osc-lib-tests
+BuildRequires: python%{pyver}-oslotest
+BuildRequires: python%{pyver}-testtools
+BuildRequires: python%{pyver}-testrepository
+BuildRequires: python%{pyver}-testscenarios
 
-Requires: python2-babel >= 2.3.4
-Requires: python2-iso8601 >= 0.1.11
-Requires: python2-os-client-config >= 1.28.0
-Requires: python2-oslo-i18n >= 3.15.3
-Requires: python2-oslo-log >= 3.36.0
-Requires: python2-oslo-serialization >= 2.18.0
-Requires: python2-oslo-utils >= 3.33.0
-Requires: python2-pbr
-Requires: python2-requests >= 2.14.2
-Requires: python2-six >= 1.10.0
-Requires: python2-debtcollector >= 1.2.0
-Requires: python2-osc-lib >= 1.10.0
-Requires: python2-keystoneauth1 >= 3.4.0
-Requires: python2-keystoneclient >= 1:3.8.0
-Requires: python2-cliff >= 2.8.0
-%if 0%{?fedora} > 0
-Requires: python2-netaddr >= 0.7.18
-Requires: python2-simplejson >= 3.5.1
-%else
-Requires: python-netaddr >= 0.7.18
+Requires: python%{pyver}-babel >= 2.3.4
+Requires: python%{pyver}-iso8601 >= 0.1.11
+Requires: python%{pyver}-os-client-config >= 1.28.0
+Requires: python%{pyver}-oslo-i18n >= 3.15.3
+Requires: python%{pyver}-oslo-log >= 3.36.0
+Requires: python%{pyver}-oslo-serialization >= 2.18.0
+Requires: python%{pyver}-oslo-utils >= 3.33.0
+Requires: python%{pyver}-pbr
+Requires: python%{pyver}-requests >= 2.14.2
+Requires: python%{pyver}-six >= 1.10.0
+Requires: python%{pyver}-debtcollector >= 1.2.0
+Requires: python%{pyver}-osc-lib >= 1.10.0
+Requires: python%{pyver}-keystoneauth1 >= 3.4.0
+Requires: python%{pyver}-keystoneclient >= 1:3.8.0
+Requires: python%{pyver}-cliff >= 2.8.0
+Requires: python%{pyver}-netaddr >= 0.7.18
+
+# Handle python2 exception
+%if %{pyver} == 2
 Requires: python-simplejson >= 3.5.1
+%else
+Requires: python%{pyver}-simplejson >= 3.5.1
 %endif
 
-%description -n python2-%{sname}
+%description -n python%{pyver}-%{sname}
 %{common_desc}
 
-%package -n python2-%{sname}-tests
+%package -n python%{pyver}-%{sname}-tests
 Summary:    Python API and CLI for OpenStack Neutron - Unit tests
-%{?python_provide:%python_provide python2-%{sname}-tests}
-Requires: python2-%{sname} == %{version}-%{release}
-Requires: python2-osc-lib-tests
-Requires: python2-oslotest
-Requires: python2-testtools
-Requires: python2-testrepository
-Requires: python2-testscenarios
+%{?python_provide:%python_provide python%{pyver}-%{sname}-tests}
+Requires: python%{pyver}-%{sname} == %{version}-%{release}
+Requires: python%{pyver}-osc-lib-tests
+Requires: python%{pyver}-oslotest
+Requires: python%{pyver}-testtools
+Requires: python%{pyver}-testrepository
+Requires: python%{pyver}-testscenarios
 
-%description -n python2-%{sname}-tests
+%description -n python%{pyver}-%{sname}-tests
 %{common_desc}
 
 This package containts the unit tests.
-
-%if 0%{?with_python3}
-%package -n python3-%{sname}
-Summary:    Python API and CLI for OpenStack Neutron
-%{?python_provide:%python_provide python3-neutronclient}
-
-BuildRequires: python3-devel
-BuildRequires: python3-setuptools
-BuildRequires: python3-pbr
-# Required for unit tests
-BuildRequires: python3-osc-lib-tests
-BuildRequires: python3-oslotest
-BuildRequires: python3-testrepository
-BuildRequires: python3-testtools
-BuildRequires: python3-testscenarios
-
-Requires: python3-babel >= 2.3.4
-Requires: python3-cliff >= 2.8.0
-Requires: python3-iso8601 >= 0.1.11
-Requires: python3-netaddr >= 0.7.18
-Requires: python3-os-client-config >= 1.28.0
-Requires: python3-oslo-i18n >= 3.15.3
-Requires: python3-oslo-log >= 3.36.0
-Requires: python3-oslo-serialization >= 2.18.0
-Requires: python3-oslo-utils >= 3.33.0
-Requires: python3-pbr
-Requires: python3-requests >= 2.14.2
-Requires: python3-simplejson >= 3.5.1
-Requires: python3-six >= 1.10.0
-Requires: python3-debtcollector >= 1.2.0
-Requires: python3-osc-lib >= 1.10.0
-Requires: python3-keystoneauth1 >= 3.4.0
-Requires: python3-keystoneclient >= 1:3.8.0
-
-%description -n python3-%{sname}
-%{common_desc}
-
-
-%package -n python3-%{sname}-tests
-Summary:    Python API and CLI for OpenStack Neutron - Unit tests
-%{?python_provide:%python_provide python3-%{sname}-tests}
-Requires: python3-%{sname} == %{version}-%{release}
-Requires: python3-osc-lib-tests
-Requires: python3-oslotest
-Requires: python3-testrepository
-Requires: python3-testtools
-Requires: python3-testscenarios
-
-%description -n python3-%{sname}-tests
-%{common_desc}
-
-This package containts the unit tests.
-%endif
 
 %package doc
 Summary:          Documentation for OpenStack Neutron API Client
 
-BuildRequires:    python2-sphinx
-BuildRequires:    python2-openstackdocstheme
-BuildRequires:    python2-reno
-BuildRequires:    python2-keystoneauth1
-BuildRequires:    python2-keystoneclient
-BuildRequires:    python2-os-client-config
-BuildRequires:    python2-osc-lib
-BuildRequires:    python2-oslo-serialization
-BuildRequires:    python2-oslo-utils
-BuildRequires:    python2-cliff
+BuildRequires:    python%{pyver}-sphinx
+BuildRequires:    python%{pyver}-openstackdocstheme
+BuildRequires:    python%{pyver}-reno
+BuildRequires:    python%{pyver}-keystoneauth1
+BuildRequires:    python%{pyver}-keystoneclient
+BuildRequires:    python%{pyver}-os-client-config
+BuildRequires:    python%{pyver}-osc-lib
+BuildRequires:    python%{pyver}-oslo-serialization
+BuildRequires:    python%{pyver}-oslo-utils
+BuildRequires:    python%{pyver}-cliff
 
 %description      doc
 %{common_desc}
@@ -160,65 +118,38 @@ BuildRequires:    python2-cliff
 %py_req_cleanup
 
 %build
-%py2_build
-%if 0%{?with_python3}
-%py3_build
-%endif
+%{pyver_build}
 
 # Build HTML docs
 export PYTHONPATH=.
-sphinx-build -W -b html doc/source doc/build/html
+sphinx-build-%{pyver} -W -b html doc/source doc/build/html
 
 # Fix hidden-file-or-dir warnings
 rm -rf doc/build/html/.doctrees doc/build/html/.buildinfo
 
 %install
-%if 0%{?with_python3}
-%py3_install
-mv %{buildroot}%{_bindir}/neutron %{buildroot}%{_bindir}/neutron-%{python3_version}
-ln -s ./neutron-%{python3_version} %{buildroot}%{_bindir}/neutron-3
-%endif
-
-%py2_install
-mv %{buildroot}%{_bindir}/neutron %{buildroot}%{_bindir}/neutron-%{python2_version}
-ln -s ./neutron-%{python2_version} %{buildroot}%{_bindir}/neutron-2
-ln -s ./neutron-2 %{buildroot}%{_bindir}/neutron
+%{pyver_install}
+mv %{buildroot}%{_bindir}/%{cname} %{buildroot}%{_bindir}/%{cname}-%{python_version}
+ln -s %{cname}-%{python_version} %{buildroot}%{_bindir}/%{cname}-%{pyver}
+ln -s %{cname}-%{pyver} %{buildroot}%{_bindir}/%{cname}
 
 %check
 # (TODO) Ignore unit tests results until https://bugs.launchpad.net/python-neutronclient/+bug/1783789
 # is fixed.
-%{__python2} setup.py testr || true
-%if 0%{?with_python3}
-rm -rf .testrepository
-%{__python3} setup.py testr || true
-%endif
+%{pyver_bin} setup.py testr || true
 
-%files -n python2-%{sname}
+%files -n python%{pyver}-%{sname}
 %doc README.rst
 %license LICENSE
-%{python2_sitelib}/neutronclient
-%{python2_sitelib}/*.egg-info
-%{_bindir}/neutron
-%{_bindir}/neutron-2
-%{_bindir}/neutron-%{python2_version}
-%exclude %{python2_sitelib}/neutronclient/tests
+%{pyver_sitelib}/%{sname}
+%{pyver_sitelib}/*.egg-info
+%{_bindir}/%{cname}
+%{_bindir}/%{cname}-%{pyver}
+%{_bindir}/%{cname}-%{python_version}
+%exclude %{pyver_sitelib}/%{sname}/tests
 
-%files -n python2-%{sname}-tests
-%{python2_sitelib}/neutronclient/tests
-
-%if 0%{?with_python3}
-%files -n python3-%{sname}
-%license LICENSE
-%doc README.rst
-%{python3_sitelib}/%{sname}
-%{python3_sitelib}/*.egg-info
-%{_bindir}/neutron-3
-%{_bindir}/neutron-%{python3_version}
-%exclude %{python3_sitelib}/neutronclient/tests
-
-%files -n python3-%{sname}-tests
-%{python3_sitelib}/neutronclient/tests
-%endif
+%files -n python%{pyver}-%{sname}-tests
+%{pyver_sitelib}/%{sname}/tests
 
 %files doc
 %doc doc/build/html
