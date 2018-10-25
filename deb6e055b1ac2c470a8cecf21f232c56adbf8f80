@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9abe1de1_007a7af1",
+        "filename": "python-neutronclient.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2018-10-25T08:51:21Z",
+      "side": 1,
+      "message": "Let\u0027s switch to stestr as done upstream. currently is failing with:\n\nDEBUG: BUILDSTDERR: No .testr.conf config file\nDEBUG: BUILDSTDERR: error: testr failed (3)",
+      "range": {
+        "startLine": 139,
+        "startChar": 0,
+        "endLine": 139,
+        "endChar": 35
+      },
+      "revId": "deb6e055b1ac2c470a8cecf21f232c56adbf8f80",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
