@@ -37,6 +37,9 @@ Obsoletes:  python-%{sname}-tests <= 4.1.1-3
 %package -n python%{pyver}-%{sname}
 Summary:    Python API and CLI for OpenStack Neutron
 %{?python_provide:%python_provide python%{pyver}-%{sname}}
+%if %{pyver} == 3
+Obsoletes: python2-%{sname} < %{version}-%{release}
+%endif
 
 BuildRequires: git
 BuildRequires: openstack-macros
