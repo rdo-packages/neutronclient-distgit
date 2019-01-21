@@ -10,6 +10,7 @@
 %global pyver_build %py%{pyver}_build
 # End of macros for py2/py3 compatibility
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
+%global with_doc 1
 
 %global cname neutron
 %global sname %{cname}client
@@ -52,6 +53,14 @@ BuildRequires: python%{pyver}-oslotest
 BuildRequires: python%{pyver}-testtools
 BuildRequires: python%{pyver}-testrepository
 BuildRequires: python%{pyver}-testscenarios
+BuildRequires: python%{pyver}-keystoneauth1
+BuildRequires: python%{pyver}-keystoneclient
+BuildRequires: python%{pyver}-os-client-config
+BuildRequires: python%{pyver}-osc-lib
+BuildRequires: python%{pyver}-oslo-log
+BuildRequires: python%{pyver}-oslo-serialization
+BuildRequires: python%{pyver}-oslo-utils
+BuildRequires: python%{pyver}-cliff
 
 Requires: python%{pyver}-babel >= 2.3.4
 Requires: python%{pyver}-iso8601 >= 0.1.11
@@ -95,22 +104,17 @@ Requires: python%{pyver}-testscenarios
 
 This package containts the unit tests.
 
+%if 0%{?with_doc}
 %package doc
 Summary:          Documentation for OpenStack Neutron API Client
 
 BuildRequires:    python%{pyver}-sphinx
 BuildRequires:    python%{pyver}-openstackdocstheme
 BuildRequires:    python%{pyver}-reno
-BuildRequires:    python%{pyver}-keystoneauth1
-BuildRequires:    python%{pyver}-keystoneclient
-BuildRequires:    python%{pyver}-os-client-config
-BuildRequires:    python%{pyver}-osc-lib
-BuildRequires:    python%{pyver}-oslo-serialization
-BuildRequires:    python%{pyver}-oslo-utils
-BuildRequires:    python%{pyver}-cliff
 
 %description      doc
 %{common_desc}
+%endif
 
 %prep
 %autosetup -n %{name}-%{upstream_version} -S git
@@ -121,12 +125,14 @@ BuildRequires:    python%{pyver}-cliff
 %build
 %{pyver_build}
 
+%if 0%{?with_doc}
 # Build HTML docs
 export PYTHONPATH=.
 sphinx-build-%{pyver} -W -b html doc/source doc/build/html
 
 # Fix hidden-file-or-dir warnings
 rm -rf doc/build/html/.doctrees doc/build/html/.buildinfo
+%endif
 
 %install
 %{pyver_install}
@@ -151,8 +157,10 @@ ln -s %{cname} %{buildroot}%{_bindir}/%{cname}-%{pyver}
 %files -n python%{pyver}-%{sname}-tests
 %{pyver_sitelib}/%{sname}/tests
 
+%if 0%{?with_doc}
 %files doc
 %doc doc/build/html
 %license LICENSE
+%endif
 
 %changelog
