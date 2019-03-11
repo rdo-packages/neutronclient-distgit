@@ -20,8 +20,8 @@ Client library and command line utility for interacting with OpenStack \
 Neutron's API.
 
 Name:       python-neutronclient
-Version:    XXX
-Release:    XXX
+Version:    6.12.0
+Release:    1%{?dist}
 Summary:    Python API and CLI for OpenStack Neutron
 
 License:    ASL 2.0
@@ -164,3 +164,6 @@ ln -s %{cname} %{buildroot}%{_bindir}/%{cname}-%{pyver}
 %endif
 
 %changelog
+* Mon Mar 11 2019 RDO <dev@lists.rdoproject.org> 6.12.0-1
+- Update to 6.12.0
+
