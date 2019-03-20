@@ -69,11 +69,11 @@ Requires: python%{pyver}-oslo-i18n >= 3.15.3
 Requires: python%{pyver}-oslo-log >= 3.36.0
 Requires: python%{pyver}-oslo-serialization >= 2.18.0
 Requires: python%{pyver}-oslo-utils >= 3.33.0
-Requires: python%{pyver}-pbr
+Requires: python%{pyver}-pbr >= 2.0.0
 Requires: python%{pyver}-requests >= 2.14.2
 Requires: python%{pyver}-six >= 1.10.0
 Requires: python%{pyver}-debtcollector >= 1.2.0
-Requires: python%{pyver}-osc-lib >= 1.10.0
+Requires: python%{pyver}-osc-lib >= 1.8.0
 Requires: python%{pyver}-keystoneauth1 >= 3.4.0
 Requires: python%{pyver}-keystoneclient >= 1:3.8.0
 Requires: python%{pyver}-cliff >= 2.8.0
