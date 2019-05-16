@@ -7,7 +7,7 @@
 %endif
 
 Name:       python-neutronclient
-Version:    6.5.0
+Version:    6.5.1
 Release:    1%{?dist}
 Summary:    Python API and CLI for OpenStack Neutron
 
@@ -163,6 +163,9 @@ rm -fr %{buildroot}%{python2_sitelib}/neutronclient/tests
 %license LICENSE
 
 %changelog
+* Thu May 16 2019 RDO <dev@lists.rdoproject.org> 6.5.1-1
+- Update to 6.5.1
+
 * Mon Aug 14 2017 Alfredo Moralejo <amoralej@redhat.com> 6.5.0-1
 - Update to 6.5.0
 
