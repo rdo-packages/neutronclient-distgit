@@ -49,7 +49,6 @@ BuildRequires: python3-oslo-serialization
 BuildRequires: python3-oslo-utils
 BuildRequires: python3-cliff
 
-Requires: python3-babel >= 2.3.4
 Requires: python3-iso8601 >= 0.1.11
 Requires: python3-os-client-config >= 1.28.0
 Requires: python3-oslo-i18n >= 3.15.3
@@ -58,7 +57,6 @@ Requires: python3-oslo-serialization >= 2.18.0
 Requires: python3-oslo-utils >= 3.33.0
 Requires: python3-pbr
 Requires: python3-requests >= 2.14.2
-Requires: python3-six >= 1.10.0
 Requires: python3-debtcollector >= 1.2.0
 Requires: python3-osc-lib >= 1.10.0
 Requires: python3-keystoneauth1 >= 3.4.0
