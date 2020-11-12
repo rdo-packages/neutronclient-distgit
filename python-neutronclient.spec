@@ -42,7 +42,7 @@ Summary:    Python API and CLI for OpenStack Neutron
 %{?python_provide:%python_provide python3-%{sname}}
 Obsoletes: python2-%{sname} < %{version}-%{release}
 
-BuildRequires: git
+BuildRequires: git-core
 BuildRequires: openstack-macros
 BuildRequires: python3-devel
 BuildRequires: python3-setuptools
