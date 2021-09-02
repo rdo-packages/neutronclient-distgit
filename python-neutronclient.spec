@@ -72,7 +72,7 @@ Requires: python3-pbr
 Requires: python3-requests >= 2.14.2
 Requires: python3-debtcollector >= 1.2.0
 Requires: python3-osc-lib >= 1.12.0
-Requires: python3-keystoneauth1 >= 3.4.0
+Requires: python3-keystoneauth1 >= 3.8.0
 Requires: python3-keystoneclient >= 1:3.8.0
 Requires: python3-cliff >= 3.4.0
 Requires: python3-netaddr >= 0.7.18
