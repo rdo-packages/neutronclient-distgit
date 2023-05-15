@@ -156,3 +156,4 @@ rm -rf doc/build/html/.doctrees doc/build/html/.buildinfo
 %endif
 
 %changelog
+# REMOVEME: error caused by commit https://opendev.org/openstack/python-neutronclient/commit/16a2cd127dfa2e44887aee911d248c8d9365efb8
