@@ -134,9 +134,6 @@ rm -rf doc/build/html/.doctrees doc/build/html/.buildinfo
 %install
 %{py3_install}
 
-# Create a versioned binary for backwards compatibility until everything is pure py3
-ln -s %{cname} %{buildroot}%{_bindir}/%{cname}-3
-
 %check
 # (TODO) Ignore unit tests results until https://bugs.launchpad.net/python-neutronclient/+bug/1783789
 # is fixed.
@@ -147,8 +144,6 @@ ln -s %{cname} %{buildroot}%{_bindir}/%{cname}-3
 %license LICENSE
 %{python3_sitelib}/%{sname}
 %{python3_sitelib}/*.egg-info
-%{_bindir}/%{cname}
-%{_bindir}/%{cname}-3
 %exclude %{python3_sitelib}/%{sname}/tests
 
 %files -n python3-%{sname}-tests
