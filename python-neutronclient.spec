@@ -135,9 +135,7 @@ rm -rf doc/build/html/.doctrees doc/build/html/.buildinfo
 %{py3_install}
 
 %check
-# (TODO) Ignore unit tests results until https://bugs.launchpad.net/python-neutronclient/+bug/1783789
-# is fixed.
-%{__python3} setup.py testr || true
+PYTHON=%{__python3} stestr run
 
 %files -n python3-%{sname}
 %doc README.rst
