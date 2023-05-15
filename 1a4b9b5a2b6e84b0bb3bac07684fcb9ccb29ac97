@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c814dae3_77671e31",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 635
+      },
+      "writtenOn": "2023-05-15T10:46:59Z",
+      "side": 1,
+      "message": "recheck it once https://review.rdoproject.org/r/c/rdoinfo/+/48547 is merged",
+      "revId": "1a4b9b5a2b6e84b0bb3bac07684fcb9ccb29ac97",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
