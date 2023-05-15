@@ -61,6 +61,7 @@ BuildRequires: python3-oslo-log
 BuildRequires: python3-oslo-serialization
 BuildRequires: python3-oslo-utils
 BuildRequires: python3-cliff
+BuildRequires: python3-osprofiler
 
 Requires: python3-iso8601 >= 0.1.11
 Requires: python3-os-client-config >= 1.28.0
@@ -135,9 +136,7 @@ rm -rf doc/build/html/.doctrees doc/build/html/.buildinfo
 %{py3_install}
 
 %check
-# (TODO) Ignore unit tests results until https://bugs.launchpad.net/python-neutronclient/+bug/1783789
-# is fixed.
-%{__python3} setup.py testr || true
+PYTHON=%{__python3} stestr run
 
 %files -n python3-%{sname}
 %doc README.rst
