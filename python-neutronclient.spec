@@ -50,8 +50,8 @@ BuildRequires: python3-pbr
 # Required for unit tests
 BuildRequires: python3-osc-lib-tests
 BuildRequires: python3-oslotest
+BuildRequires: python3-stestr
 BuildRequires: python3-testtools
-BuildRequires: python3-testrepository
 BuildRequires: python3-testscenarios
 BuildRequires: python3-keystoneauth1
 BuildRequires: python3-keystoneclient
@@ -88,8 +88,8 @@ Summary:    Python API and CLI for OpenStack Neutron - Unit tests
 Requires: python3-%{sname} == %{version}-%{release}
 Requires: python3-osc-lib-tests
 Requires: python3-oslotest
+Requires: python3-stestr
 Requires: python3-testtools
-Requires: python3-testrepository
 Requires: python3-testscenarios
 
 %description -n python3-%{sname}-tests
