@@ -88,8 +88,8 @@ Summary:    Python API and CLI for OpenStack Neutron - Unit tests
 Requires: python3-%{sname} == %{version}-%{release}
 Requires: python3-osc-lib-tests
 Requires: python3-oslotest
+Requires: python3-stestr
 Requires: python3-testtools
-Requires: python3-testrepository
 Requires: python3-testscenarios
 
 %description -n python3-%{sname}-tests
