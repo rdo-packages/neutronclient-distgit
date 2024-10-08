@@ -7,6 +7,10 @@
 %if ! 0%{?with_doc}
 %global excluded_brs %{excluded_brs} sphinx openstackdocstheme
 %endif
+# Exclude some BRs for Fedora
+%if 0%{?fedora}
+%global excluded_brs %{excluded_brs} tempest osprofiler
+%endif
 %global with_doc 1
 
 %global cname neutron
@@ -120,6 +124,10 @@ rm -rf doc/build/html/.doctrees doc/build/html/.buildinfo
 %pyproject_install
 
 %check
+%if 0%{?fedora}
+# test_http.py imports osprofiler
+rm neutronclient/tests/unit/test_http.py
+%endif
 %tox -e %{default_toxenv}
 
 %files -n python3-%{sname}
